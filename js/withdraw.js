@@ -6,17 +6,24 @@ document.getElementById('withdraw').addEventListener('click' , function(){
     withdrawTotalElement.value = '';
     if(isNaN(withdraw)){
         alert("Please deposit money")
+        return;
     }
 
-    const withdrawValueElement = document.getElementById('withdraw-total')
+    
+
+    const balanceTotalElement = document.getElementById('balance-total');
+    const balanceTotal = parseFloat(balanceTotalElement.innerText)
+    const balance = balanceTotal - withdraw;
+      if(withdraw > balanceTotal){
+        alert('amount not pound')
+        return;
+      }
+      const withdrawValueElement = document.getElementById('withdraw-total')
     const withdrawValue = parseFloat(withdrawValueElement.innerText) 
     const withdrawSum = withdrawValue +withdraw;
     // console.log(withdrawSum)
     withdrawValueElement.innerText = withdrawSum;
 
-    const balanceTotalElement = document.getElementById('balance-total');
-    const balanceTotal = parseFloat(balanceTotalElement.innerText)
-    const balance = balanceTotal - withdraw;
     balanceTotalElement.innerText = balance;
 
 })
